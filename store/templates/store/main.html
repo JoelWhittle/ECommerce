@@ -1,0 +1,126 @@
+
+	{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+	<!-- Meta Tag -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name='copyright' content=''>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Title Tag  -->
+    <title>Eshop - eCommerce HTML5 Template.</title>
+	<!-- Favicon -->
+	<link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+	<!-- Web Font -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+	
+	<!-- StyleSheet -->
+	
+	<!-- Bootstrap -->
+	<link rel="stylesheet" = type="text/css" href="{% static 'css/bootstrap.css' %}">
+	<!-- Magnific Popup -->
+    <link rel="stylesheet" = type="text/css" href="{% static 'css/magnific-popup.min.css' %}">
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" = type="text/css" href="{% static 'css/font-awesome.css' %}">
+	<!-- Fancybox -->
+		<link rel="stylesheet" = type="text/css" href="{% static 'css/jquery.fancybox.min.css' %}">
+
+	<!-- Themify Icons -->
+		<link rel="stylesheet" = type="text/css" href="{% static 'css/themify-icons.css' %}">
+	<!-- Nice Select CSS -->
+		<link rel="stylesheet" = type="text/css" href="{% static 'css/niceselect.css' %}">
+	<!-- Animate CSS -->
+		<link rel="stylesheet" = type="text/css" href="{% static 'css/animate.css' %}">
+	<!-- Flex Slider CSS -->
+    		<link rel="stylesheet" = type="text/css" href="{% static 'css/flex-slider.min.css' %}">
+
+	<!-- Owl Carousel -->
+    		<link rel="stylesheet" = type="text/css" href="{% static 'css/owl-carousel.css' %}">
+
+	<!-- Slicknav -->
+    	<link rel="stylesheet" = type="text/css" href="{% static 'css/slicknav.min.css' %}">
+
+	
+	<!-- Eshop StyleSheet -->
+			<link rel="stylesheet" = type="text/css" href="{% static 'css/reset.css' %}">
+
+			<link rel="stylesheet" = type="text/css" href="{% static 'css/style.css' %}">
+
+    		<link rel="stylesheet" = type="text/css" href="{% static 'css/responsive.css' %}">
+
+
+<script type="text/javascript">
+var user = '{{request.user}}'
+</script>
+	
+</head>
+
+<script type="text/javascript">
+var user = '{{request.user}}'
+
+function getToken(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
+function getCookie(name)
+{
+var cookieArr = document.cookie.split(";");
+for(var i = 0; i < cookieArr.length; i++)
+{
+var cookiePair = cookieArr[i].split("=");
+
+if(name == cookiePair[0].trim())
+{
+	 console.log('ingetcookie:', cookiePair)
+
+	return decodeURIComponent(cookiePair[1]);
+}
+}
+return null;
+}
+
+var cart = JSON.parse(getCookie('cart')); 
+console.log('carpre: ', cart)
+
+if(cart == undefined || cart == null)
+{
+	cart = {}
+	console.log('cart created!', cart)
+	document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+}
+console.log('cart: ', cart)
+
+const csrftoken = getToken('csrftoken');
+
+</script>
+	
+</head>
+
+     <div class="container">
+            <br>
+            {% block content %}
+
+
+            {% endblock content %}
+         </div>
+
+
+</html>
